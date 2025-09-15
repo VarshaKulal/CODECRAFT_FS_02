@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Register</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Register</h1>
+    <div class="card">
+      <input id="username" placeholder="Username" /><br>
+      <input id="password" type="password" placeholder="Password (min 6)" /><br>
+      <select id="role">
+        <option value="user">User</option>
+        <option value="admin">Admin</option>
+      </select><br>
+      <button id="btnRegister">Register</button>
+      <p id="msg"></p>
+      <p><a href="login.html">Already have an account? Login</a></p>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("btnRegister").addEventListener("click", async () => {
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value;
+      const role = document.getElementById("role").value;
+      const msg = document.getElementById("msg");
+      msg.textContent = ""; msg.className = "";
+
+      try {
+        const res = await fetch("http://localhost:3000/api/register", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ username, password, role }),
+          credentials: "include"
+        });
+        const data = await res.json();
+        if (!res.ok) {
+          msg.className = "error"; msg.textContent = data.error || (data.errors && data.errors[0].msg) || "Error";
+        } else {
+          msg.className = "message"; msg.textContent = data.message || "Registered";
+          setTimeout(() => location.href = "login.html", 800);
+        }
+      } catch (err) {
+        msg.className = "error"; msg.textContent = "Network error: " + err.message;
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+/* style.css - simple clean layout */
+body { font-family: Arial, Helvetica, sans-serif; background: #f4f6fb; margin: 0; padding: 20px; color: #222; }
+.container { max-width: 900px; margin: 0 auto; text-align: center; }
+.card { background: #fff; padding: 18px; border-radius: 8px; box-shadow: 0 6px 20px rgba(0,0,0,0.06); margin: 18px auto; display: block; }
+input, select, textarea { width: 90%; padding: 10px; margin: 8px 0; }
+button { padding: 10px 14px; margin: 8px; cursor: pointer; }
+.table { width: 100%; border-collapse: collapse; margin-top: 12px; }
+.table th, .table td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+.message { color: green; }
+.error { color: red; }

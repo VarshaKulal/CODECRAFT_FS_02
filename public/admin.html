@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Admin - Employee Management</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Employee Management (Admin)</h1>
+
+    <div class="card">
+      <div>
+        <strong id="whoami"></strong>
+        <button id="btnLogout" style="float:right">Logout</button>
+      </div>
+
+      <h3>Add / Edit Employee</h3>
+      <input id="name" placeholder="Name" /><br>
+      <input id="email" placeholder="Email" /><br>
+      <input id="position" placeholder="Position" /><br>
+      <input id="salary" placeholder="Salary" type="number" /><br>
+
+      <button id="btnAdd">Add Employee</button>
+      <button id="btnUpdate" style="display:none">Update Employee</button>
+      <button id="btnCancel" style="display:none">Cancel</button>
+
+      <p id="msg" class="message"></p>
+    </div>
+
+    <div class="card" style="width: 90%;">
+      <h3>Employees</h3>
+      <table class="table" id="empTable">
+        <thead><tr><th>Name</th><th>Email</th><th>Position</th><th>Salary</th><th>Actions</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <script src="employees.js"></script>
+</body>
+</html>

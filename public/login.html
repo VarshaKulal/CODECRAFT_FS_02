@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Login</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Login</h1>
+    <div class="card">
+      <input id="username" placeholder="Username" /><br>
+      <input id="password" type="password" placeholder="Password" /><br>
+      <button id="btnLogin">Login</button>
+      <p id="msg"></p>
+      <p><a href="register.html">New user? Register</a></p>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("btnLogin").addEventListener("click", async () => {
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value;
+      const msg = document.getElementById("msg"); msg.textContent = "";
+
+      try {
+        const res = await fetch("http://localhost:3000/api/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ username, password }),
+          credentials: "include"
+        });
+        const data = await res.json();
+        if (!res.ok) { msg.className="error"; msg.textContent = data.error || "Login failed"; return; }
+        // redirect according to role
+        if (data.role === "admin") location.href = "admin.html";
+        else location.href = "admin.html"; // for this task we show admin page only; change if you add user dashboard
+      } catch (err) {
+        msg.className="error"; msg.textContent = err.message;
+      }
+    });
+  </script>
+</body>
+</html>
